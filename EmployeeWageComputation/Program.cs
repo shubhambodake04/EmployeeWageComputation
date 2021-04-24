@@ -6,16 +6,13 @@ namespace EmployeeWageComputation
     {
         public const int IS_PART_TIME = 1;
         public const int IS_FULL_TIME = 2;
-        public const int EMP_RATE_PER_HOUR = 100;
-        public const int NO_OF_WORKING_DAYS = 20;
-        public const int MAX_HRS_IN_THE_MONTH = 10;
         
-        public static int computeEmpWage()
+        public static int computeEmpWage(string company, int empRatePerHrs, int numOfWorkingdays, int maxHrsPerMonth)
         {
             int empHrs = 0;
             int totalEmpHrs = 0;
             int totalWorkingDays = 0;
-            while (totalEmpHrs <= MAX_HRS_IN_THE_MONTH && totalWorkingDays < NO_OF_WORKING_DAYS)
+            while (totalEmpHrs <= maxHrsPerMonth && totalWorkingDays < numOfWorkingdays)
             {
                 totalWorkingDays++;
                 Random random = new Random();
@@ -38,16 +35,17 @@ namespace EmployeeWageComputation
 
 
                 totalEmpHrs += empHrs;
-                Console.WriteLine("Days#:" + totalWorkingDays + "EmpHrs :" + empHrs);
+                Console.WriteLine("Days#:" + totalWorkingDays + "EmpHrs :" + empHrs + "Company :" + company);
             }
-             int totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
+             int totalEmpWage = totalEmpHrs * empRatePerHrs;
             Console.WriteLine("Total Emp Wage:" + totalEmpWage);
             return totalEmpWage;
         }
 
         static void Main(string[] args)
         {
-            computeEmpWage();
+            computeEmpWage("Dmart",20,2,100);
+            computeEmpWage("Relience",10,4,20);
         }
     }
 }
